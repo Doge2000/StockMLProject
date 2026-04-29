@@ -25,6 +25,8 @@ for name, stock in stocks.items():
     stock = stock[['Open', 'High', 'Low', 'Close', 'Volume']]
     stock['MA_10'] = stock['Close'].rolling(window=10).mean()
     stock['MA_50'] = stock['Close'].rolling(window=50).mean()
+
+    stock['Target'] = stock['Close'].shift(-1)
     stock = stock.dropna()
     stocks[name] = stock
 
@@ -34,10 +36,10 @@ for name, stock in stocks.items():
 
 
 models = {}
-
+os.makedirs("saved_models", exist_ok=True)
 for name, stock in stocks.items():
-    X = stock[['Open', 'High', 'Low', 'Volume', 'MA_10', 'MA_50']]
-    y = stock['Close']
+    X = stock[['Open', 'High', 'Low', 'Close','Volume', 'MA_10', 'MA_50']]
+    y = stock['Target']
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
     model = LinearRegression()
@@ -50,9 +52,6 @@ for name, stock in stocks.items():
     r2 = r2_score(y_test, predictions)
 
     models[name] = model
-
-
-    os.makedirs("saved_models", exist_ok=True)
     file_name = f"{name.lower().replace(' ', '_')}_model.pkl"
     joblib.dump(model, f"saved_models/{file_name}")
     print(f"\n--- {name} ---")
