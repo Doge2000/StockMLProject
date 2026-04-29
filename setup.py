@@ -34,8 +34,8 @@ tesla = yf.download("TSLA", start="2020-01-01", end="2026-4-28")
 intel = yf.download("INTC", start="2020-01-01", end="2026-4-28")
 
 stocks = {
-    "Apple":   ("AAPL",  apple),
-    # "Nvidia":  ("NVDA",  nvidia),
+    # "Apple":   ("AAPL",  apple),
+    "Nvidia":  ("NVDA",  nvidia),
     # "Tesla":  ("TSLA",  tesla),
     # "S&P 500": ("^GSPC", sp500),
     # "AMD":     ("AMD",   amd),
@@ -45,9 +45,9 @@ stocks = {
 
 os.makedirs("saved_models", exist_ok=True)
 
-SEQUENCE_LENGTH = 10
-EPOCHS = 500
-BATCH_SIZE = 32
+SEQUENCE_LENGTH = 20
+EPOCHS = 1200
+BATCH_SIZE = 1100
 features = ['Open', 'High', 'Low', 'Close', 'Volume', 'MA_10', 'MA_50']
 
 for name, (ticker, data) in stocks.items():
