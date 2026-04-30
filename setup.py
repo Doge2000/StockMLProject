@@ -46,28 +46,28 @@ class LSTMModel(nn.Module):
         return out
 
 
-apple = yf.download("AAPL", start="2023-01-01", end="2026-4-29")
-nvidia = yf.download("NVDA", start="2023-01-01", end="2026-4-29")
-sp500 = yf.download("^GSPC", start="2023-01-01", end="2026-4-29")
-amd = yf.download("AMD", start="2023-01-01", end="2026-4-29")
-slb = yf.download("SLB", start="2023-01-01", end="2026-4-29")
-tesla = yf.download("TSLA", start="2023-01-01", end="2026-4-29")
-intel = yf.download("INTC", start="2023-01-01", end="2026-4-29")
+apple = yf.download("AAPL", start="2021-01-01", end="2026-4-29")
+nvidia = yf.download("NVDA", start="2021-01-01", end="2026-4-29")
+sp500 = yf.download("^GSPC", start="2021-01-01", end="2026-4-29")
+amd = yf.download("AMD", start="2021-01-01", end="2026-4-29")
+slb = yf.download("SLB", start="2021-01-01", end="2026-4-29")
+tesla = yf.download("TSLA", start="2021-01-01", end="2026-4-29")
+intel = yf.download("INTC", start="2021-01-01", end="2026-4-29")
 
 stocks = {
-    "Apple":   ("AAPL",  apple),
-    "Nvidia":  ("NVDA",  nvidia),
+    # "Apple":   ("AAPL",  apple),
+    # "Nvidia":  ("NVDA",  nvidia),
     "Tesla":  ("TSLA",  tesla),
-    "S&P 500": ("^GSPC", sp500),
-    "AMD":     ("AMD",   amd),
-    "SLB":     ("SLB",   slb),
-    "Intel":   ("INTC",  intel)
+    # "S&P 500": ("^GSPC", sp500),
+    # "AMD":     ("AMD",   amd),
+    # "SLB":     ("SLB",   slb),
+    # "Intel":   ("INTC",  intel)
 }
 
 os.makedirs("saved_models", exist_ok=True)
 
 SEQUENCE_LENGTH = 30
-EPOCHS = 1000
+EPOCHS = 1500
 BATCH_SIZE = 32
 
 

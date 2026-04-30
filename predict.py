@@ -85,6 +85,9 @@ for display_name, (ticker, file_name) in tickers.items():
     stock['Return_1d']  = stock['Close'].pct_change(1)
     stock['Return_5d']  = stock['Close'].pct_change(5)
     stock['Return_10d'] = stock['Close'].pct_change(10)
+    stock['Lag_1'] = stock['Close'].shift(1)
+    stock['Lag_2'] = stock['Close'].shift(2)
+    stock['Lag_3'] = stock['Close'].shift(3)
     stock = stock.dropna()
 
     X_scaled = scaler_X.transform(stock[features])
