@@ -73,7 +73,7 @@ for display_name, (ticker, file_name) in tickers.items():
     scaler_y = joblib.load(f"saved_models/{file_name}_scaler_y.pkl")
 
 
-    stock = yf.download(ticker, period="200d", auto_adjust=True)
+    stock = yf.download(ticker, period="100d", auto_adjust=True)
     stock.columns = stock.columns.get_level_values(0)
     stock['MA_10'] = stock['Close'].rolling(window=10).mean()
     stock['MA_50'] = stock['Close'].rolling(window=50).mean()

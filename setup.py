@@ -55,13 +55,13 @@ tesla = yf.download("TSLA", start="2021-01-01", end="2026-4-29")
 intel = yf.download("INTC", start="2021-01-01", end="2026-4-29")
 
 stocks = {
-    # "Apple":   ("AAPL",  apple),
-    # "Nvidia":  ("NVDA",  nvidia),
+    "Apple":   ("AAPL",  apple),
+    "Nvidia":  ("NVDA",  nvidia),
     "Tesla":  ("TSLA",  tesla),
-    # "S&P 500": ("^GSPC", sp500),
-    # "AMD":     ("AMD",   amd),
-    # "SLB":     ("SLB",   slb),
-    # "Intel":   ("INTC",  intel)
+    "S&P 500": ("^GSPC", sp500),
+    "AMD":     ("AMD",   amd),
+    "SLB":     ("SLB",   slb),
+    "Intel":   ("INTC",  intel)
 }
 
 os.makedirs("saved_models", exist_ok=True)
@@ -133,7 +133,6 @@ for name, (ticker, data) in stocks.items():
 
     file_name = name.lower().replace(" ", "_")
 
-    # ← reset these INSIDE the loop
     best_loss = float('inf')
     epochs_without_improvement = 0
     loss_history = []
