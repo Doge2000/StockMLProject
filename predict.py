@@ -4,7 +4,7 @@ import joblib
 import yfinance as yf
 import numpy as np
 
-SEQUENCE_LENGTH = 60
+SEQUENCE_LENGTH = 30
 
 def compute_RSI(series, period=14):
     delta = series.diff()
@@ -39,7 +39,7 @@ features = [
 ]
 
 class LSTMModel(nn.Module):
-    def __init__(self, input_size, hidden_size=64, num_layers=2):
+    def __init__(self, input_size, hidden_size=128, num_layers=2):
         super(LSTMModel, self).__init__()
         self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True, dropout=0.2)
         self.fc1 = nn.Linear(hidden_size, 32)
