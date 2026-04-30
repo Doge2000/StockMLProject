@@ -73,7 +73,7 @@ BATCH_SIZE = 32
 
 best_loss = float('inf')
 epochs_without_improvement = 0
-patience = 50
+patience = 49
 
 features = [
     'Open', 'High', 'Low', 'Close', 'Volume',
