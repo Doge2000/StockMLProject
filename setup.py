@@ -82,7 +82,8 @@ features = [
     'MACD', 'MACD_signal', 'MACD_hist',
     'BB_upper', 'BB_lower', 'BB_mid',
     'Volume_change', 
-    'Return_1d', 'Return_5d', 'Return_10d'
+    'Return_1d', 'Return_5d', 'Return_10d',
+    'Lag_1', 'Lag_2', 'Lag_3'
 ]
 
 for name, (ticker, data) in stocks.items():
@@ -100,6 +101,9 @@ for name, (ticker, data) in stocks.items():
     df['Return_1d']  = df['Close'].pct_change(1)
     df['Return_5d']  = df['Close'].pct_change(5)
     df['Return_10d'] = df['Close'].pct_change(10)
+    df['Lag_1'] = df['Close'].shift(1)  
+    df['Lag_2'] = df['Close'].shift(2)
+    df['Lag_3'] = df['Close'].shift(3)
     df['Target'] = df['Close'].shift(-1)
     df = df.dropna()
 
