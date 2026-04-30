@@ -1,0 +1,8 @@
+Patience is set to 100 
+Learning rate 0.0005
+
+
+NVDA:
+Epochs: 650
+Sequence: 30
+Batch: 32
