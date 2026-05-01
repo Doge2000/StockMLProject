@@ -57,6 +57,7 @@ google = yf.download("GOOGL", start="2021-01-01", end="2026-4-30")
 meta = yf.download("META", start="2021-01-01", end="2026-4-30")
 nasdaq = yf.download("^IXIC", start="2021-01-01", end="2026-4-30")
 roblox = yf.download("RBLX", start="2021-01-01", end="2026-4-30")
+
 stocks = {
     # "Apple":   ("AAPL",  apple),
     # "Nvidia":  ("NVDA",  nvidia),
@@ -64,11 +65,10 @@ stocks = {
     # "S&P 500": ("^GSPC", sp500),
     # "AMD":     ("AMD",   amd),
     # "SLB":     ("SLB",   slb),
-    # "Intel":   ("INTC",  intel)
-    # "Google":   ("GOOGL", google)
-    # "Meta":   ("META", meta),
-    # "Nasdaq":   ("^IXIC", nasdaq)
     # "Intel":   ("INTC",  intel),
+    # "Google":   ("GOOGL", google),
+    "Meta":   ("META", meta),
+    "Nasdaq":   ("^IXIC", nasdaq),
     "Roblox":  ("RBLX",  roblox)
 }
 
@@ -81,7 +81,7 @@ BATCH_SIZE = 32
 
 best_loss = float('inf')
 epochs_without_improvement = 0
-patience = 100
+patience = 50
 
 features = [
     'Open', 'High', 'Low', 'Close', 'Volume',
