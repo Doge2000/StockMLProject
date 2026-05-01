@@ -58,7 +58,10 @@ tickers = {
     "AMD":     ("AMD",   "amd"),
     "SLB":     ("SLB",   "slb"),
     "Tesla":   ("TSLA",  "tesla"),
-    "Intel":   ("INTC",  "intel")
+    "Intel":   ("INTC",  "intel"),
+    "Google":   ("GOOGL", "google"),
+    "Meta":   ("META", "meta"),
+    "Nasdaq":   ("^IXIC", "nasdaq")
 }
 
 print("========== TOMORROW'S PREDICTIONS (LSTM) ==========")

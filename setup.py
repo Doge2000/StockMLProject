@@ -53,6 +53,9 @@ amd = yf.download("AMD", start="2021-01-01", end="2026-4-30")
 slb = yf.download("SLB", start="2021-01-01", end="2026-4-30")
 tesla = yf.download("TSLA", start="2021-01-01", end="2026-4-30")
 intel = yf.download("INTC", start="2021-01-01", end="2026-4-30")
+google = yf.download("GOOGL", start="2021-01-01", end="2026-4-30")
+meta = yf.download("META", start="2021-01-01", end="2026-4-30")
+nasdaq = yf.download("^IXIC", start="2021-01-01", end="2026-4-30")
 
 stocks = {
     # "Apple":   ("AAPL",  apple),
@@ -60,8 +63,11 @@ stocks = {
     # "Tesla":  ("TSLA",  tesla),
     # "S&P 500": ("^GSPC", sp500),
     # "AMD":     ("AMD",   amd),
-    "SLB":     ("SLB",   slb),
-    "Intel":   ("INTC",  intel)
+    # "SLB":     ("SLB",   slb),
+    # "Intel":   ("INTC",  intel)
+    # "Google":   ("GOOGL", google)
+    # "Meta":   ("META", meta),
+    "Nasdaq":   ("^IXIC", nasdaq)
 }
 
 os.makedirs("saved_models", exist_ok=True)
@@ -73,7 +79,7 @@ BATCH_SIZE = 32
 
 best_loss = float('inf')
 epochs_without_improvement = 0
-patience = 50
+patience = 100
 
 features = [
     'Open', 'High', 'Low', 'Close', 'Volume',
