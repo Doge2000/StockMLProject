@@ -46,20 +46,20 @@ class LSTMModel(nn.Module):
         return out
 
 
-apple = yf.download("AAPL", start="2023-01-01", end="2026-4-29")
-nvidia = yf.download("NVDA", start="2023-01-01", end="2026-4-29")
-sp500 = yf.download("^GSPC", start="2023-01-01", end="2026-4-29")
-amd = yf.download("AMD", start="2023-01-01", end="2026-4-29")
-slb = yf.download("SLB", start="2023-01-01", end="2026-4-29")
-tesla = yf.download("TSLA", start="2023-01-01", end="2026-4-29")
-intel = yf.download("INTC", start="2023-01-01", end="2026-4-29")
+apple = yf.download("AAPL", start="2021-01-01", end="2026-4-30")
+nvidia = yf.download("NVDA", start="2021-01-01", end="2026-4-30")
+sp500 = yf.download("^GSPC", start="2021-01-01", end="2026-4-30")
+amd = yf.download("AMD", start="2021-01-01", end="2026-4-30")
+slb = yf.download("SLB", start="2021-01-01", end="2026-4-30")
+tesla = yf.download("TSLA", start="2021-01-01", end="2026-4-30")
+intel = yf.download("INTC", start="2021-01-01", end="2026-4-30")
 
 stocks = {
-    "Apple":   ("AAPL",  apple),
-    "Nvidia":  ("NVDA",  nvidia),
-    "Tesla":  ("TSLA",  tesla),
-    "S&P 500": ("^GSPC", sp500),
-    "AMD":     ("AMD",   amd),
+    # "Apple":   ("AAPL",  apple),
+    # "Nvidia":  ("NVDA",  nvidia),
+    # "Tesla":  ("TSLA",  tesla),
+    # "S&P 500": ("^GSPC", sp500),
+    # "AMD":     ("AMD",   amd),
     "SLB":     ("SLB",   slb),
     "Intel":   ("INTC",  intel)
 }
@@ -82,7 +82,8 @@ features = [
     'MACD', 'MACD_signal', 'MACD_hist',
     'BB_upper', 'BB_lower', 'BB_mid',
     'Volume_change', 
-    'Return_1d', 'Return_5d', 'Return_10d'
+    'Return_1d', 'Return_5d', 'Return_10d',
+    'Lag_1', 'Lag_2', 'Lag_3'
 ]
 
 for name, (ticker, data) in stocks.items():
@@ -100,6 +101,9 @@ for name, (ticker, data) in stocks.items():
     df['Return_1d']  = df['Close'].pct_change(1)
     df['Return_5d']  = df['Close'].pct_change(5)
     df['Return_10d'] = df['Close'].pct_change(10)
+    df['Lag_1'] = df['Close'].shift(1)  
+    df['Lag_2'] = df['Close'].shift(2)
+    df['Lag_3'] = df['Close'].shift(3)
     df['Target'] = df['Close'].shift(-1)
     df = df.dropna()
 
@@ -129,7 +133,6 @@ for name, (ticker, data) in stocks.items():
 
     file_name = name.lower().replace(" ", "_")
 
-    # ← reset these INSIDE the loop
     best_loss = float('inf')
     epochs_without_improvement = 0
     loss_history = []
