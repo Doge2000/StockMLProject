@@ -53,15 +53,16 @@ amd = yf.download("AMD", start="2021-01-01", end="2026-4-30")
 slb = yf.download("SLB", start="2021-01-01", end="2026-4-30")
 tesla = yf.download("TSLA", start="2021-01-01", end="2026-4-30")
 intel = yf.download("INTC", start="2021-01-01", end="2026-4-30")
-
+roblox = yf.download("RBLX", start="2021-01-01", end="2026-4-30")
 stocks = {
     # "Apple":   ("AAPL",  apple),
     # "Nvidia":  ("NVDA",  nvidia),
     # "Tesla":  ("TSLA",  tesla),
     # "S&P 500": ("^GSPC", sp500),
     # "AMD":     ("AMD",   amd),
-    "SLB":     ("SLB",   slb),
-    "Intel":   ("INTC",  intel)
+    # "SLB":     ("SLB",   slb),
+    # "Intel":   ("INTC",  intel),
+    "Roblox":  ("RBLX",  roblox)
 }
 
 os.makedirs("saved_models", exist_ok=True)

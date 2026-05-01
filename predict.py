@@ -58,7 +58,8 @@ tickers = {
     "AMD":     ("AMD",   "amd"),
     "SLB":     ("SLB",   "slb"),
     "Tesla":   ("TSLA",  "tesla"),
-    "Intel":   ("INTC",  "intel")
+    "Intel":   ("INTC",  "intel"),
+    "Roblox":  ("RBLX",  "roblox")
 }
 
 print("========== TOMORROW'S PREDICTIONS (LSTM) ==========")
