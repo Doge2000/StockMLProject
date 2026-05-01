@@ -5,6 +5,15 @@ import yfinance as yf
 import numpy as np
 
 SEQUENCE_LENGTH = 30
+features = [ 'Open', 'High', 'Low', 'Close', 'Volume',
+    'MA_10', 'MA_50',
+    'RSI',
+    'MACD', 'MACD_signal', 'MACD_hist',
+    'BB_upper', 'BB_lower', 'BB_mid',
+    'Volume_change', 
+    'Return_1d', 'Return_5d', 'Return_10d',
+    'Lag_1', 'Lag_2', 'Lag_3'
+    ]
 
 def compute_RSI(series, period=14):
     delta = series.diff()
@@ -28,15 +37,6 @@ def compute_bollinger(series, period=20):
     lower = mid - 2 * std
     return upper, lower, mid
 
-features = [
-    'Open', 'High', 'Low', 'Close', 'Volume',
-    'MA_10', 'MA_50',
-    'RSI',
-    'MACD', 'MACD_signal', 'MACD_hist',
-    'BB_upper', 'BB_lower', 'BB_mid',
-    'Volume_change', 
-    'Return_1d', 'Return_5d', 'Return_10d'
-]
 
 class LSTMModel(nn.Module):
     def __init__(self, input_size, hidden_size=128, num_layers=2):
@@ -71,8 +71,8 @@ for display_name, (ticker, file_name) in tickers.items():
     scaler_X = joblib.load(f"saved_models/{file_name}_scaler_X.pkl")
     scaler_y = joblib.load(f"saved_models/{file_name}_scaler_y.pkl")
 
-    # Download enough data for all indicators
-    stock = yf.download(ticker, period="200d", auto_adjust=True)
+
+    stock = yf.download(ticker, period="100d", auto_adjust=True)
     stock.columns = stock.columns.get_level_values(0)
 
     # Compute all features — must match setup.py exactly
@@ -86,17 +86,20 @@ for display_name, (ticker, file_name) in tickers.items():
     stock['Return_1d']  = stock['Close'].pct_change(1)
     stock['Return_5d']  = stock['Close'].pct_change(5)
     stock['Return_10d'] = stock['Close'].pct_change(10)
+    stock['Lag_1'] = stock['Close'].shift(1)
+    stock['Lag_2'] = stock['Close'].shift(2)
+    stock['Lag_3'] = stock['Close'].shift(3)
     stock = stock.dropna()
 
     X_scaled = scaler_X.transform(stock[features])
-  
     sequence_yesterday = torch.tensor(X_scaled[-SEQUENCE_LENGTH-1:-1], dtype=torch.float32).unsqueeze(0)
-    sequence_today = torch.tensor(X_scaled[-SEQUENCE_LENGTH:], dtype=torch.float32).unsqueeze(0)
+    sequence_today = torch.tensor(X_scaled[-SEQUENCE_LENGTH: ], dtype=torch.float32).unsqueeze(0)
 
     with torch.no_grad():
         predicted_today    = float(scaler_y.inverse_transform(model(sequence_yesterday).numpy())[0][0])
         predicted_tomorrow = float(scaler_y.inverse_transform(model(sequence_today).numpy())[0][0])
 
+    
     actual_today = float(stock['Close'].iloc[-1])
     diff = predicted_tomorrow - actual_today
     direction = "▲" if diff > 0 else "▼"
