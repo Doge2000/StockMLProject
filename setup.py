@@ -56,7 +56,7 @@ intel = yf.download("INTC", start="2021-01-01", end="2026-4-30")
 google = yf.download("GOOGL", start="2021-01-01", end="2026-4-30")
 meta = yf.download("META", start="2021-01-01", end="2026-4-30")
 nasdaq = yf.download("^IXIC", start="2021-01-01", end="2026-4-30")
-
+roblox = yf.download("RBLX", start="2021-01-01", end="2026-4-30")
 stocks = {
     # "Apple":   ("AAPL",  apple),
     # "Nvidia":  ("NVDA",  nvidia),
@@ -67,13 +67,15 @@ stocks = {
     # "Intel":   ("INTC",  intel)
     # "Google":   ("GOOGL", google)
     # "Meta":   ("META", meta),
-    "Nasdaq":   ("^IXIC", nasdaq)
+    # "Nasdaq":   ("^IXIC", nasdaq)
+    # "Intel":   ("INTC",  intel),
+    "Roblox":  ("RBLX",  roblox)
 }
 
 os.makedirs("saved_models", exist_ok=True)
 
 SEQUENCE_LENGTH = 30
-EPOCHS = 1500
+EPOCHS = 1000
 BATCH_SIZE = 32
 
 

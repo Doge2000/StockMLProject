@@ -61,13 +61,13 @@ tickers = {
     "Intel":   ("INTC",  "intel"),
     "Google":   ("GOOGL", "google"),
     "Meta":   ("META", "meta"),
-    "Nasdaq":   ("^IXIC", "nasdaq")
+    "Nasdaq":   ("^IXIC", "nasdaq"),
+    "Roblox":  ("RBLX",  "roblox")
 }
 
 print("========== TOMORROW'S PREDICTIONS (LSTM) ==========")
 
 for display_name, (ticker, file_name) in tickers.items():
-    # --- Load model and scalers ---
     model = LSTMModel(input_size=len(features))
     model.load_state_dict(torch.load(f"saved_models/{file_name}_lstm.pth", weights_only=True))
     model.eval()
@@ -78,6 +78,8 @@ for display_name, (ticker, file_name) in tickers.items():
 
     stock = yf.download(ticker, period="100d", auto_adjust=True)
     stock.columns = stock.columns.get_level_values(0)
+
+    # Compute all features — must match setup.py exactly
     stock['MA_10'] = stock['Close'].rolling(window=10).mean()
     stock['MA_50'] = stock['Close'].rolling(window=50).mean()
     stock['RSI']   = compute_RSI(stock['Close'])
@@ -103,10 +105,8 @@ for display_name, (ticker, file_name) in tickers.items():
 
     
     actual_today = float(stock['Close'].iloc[-1])
-
     diff = predicted_tomorrow - actual_today
     direction = "▲" if diff > 0 else "▼"
-
     print(f"\n--- {display_name} ---")
     print(f"  Predicted today:    ${predicted_today:.2f}  (actual: ${actual_today:.2f}  off by: ${abs(predicted_today - actual_today):.2f})")
     print(f"  Predicted tomorrow: ${predicted_tomorrow:.2f}  {direction} ${abs(diff):.2f}")
