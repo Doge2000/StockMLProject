@@ -16,6 +16,7 @@ data pulled from Yahoo Finance.
 ## Configuration
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| epochs | ... | Training iterations |
-| batch_size | ... | Samples per batch |
-| sequence_length | ... | Lookback window |
+| epochs | 1000 | Training iterations |
+| batch_size | 32 | Samples per batch |
+| sequence_length | 30 | Lookback window |
+| patience | 50 | Tolerance of loss |
