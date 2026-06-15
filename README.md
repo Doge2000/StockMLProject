@@ -9,7 +9,7 @@ data pulled from Yahoo Finance.
 - Evaluates predictions using MAE
 
 ## How to Run
-1. `pip install -r requirements.txt`
+1. `pip install -r Requirements.txt`
 2. Train: `python setup.py`
 3. Predict: `python predict.py`
 
