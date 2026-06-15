@@ -46,27 +46,27 @@ class LSTMModel(nn.Module):
         return out
 
 
-apple = yf.download("AAPL", start="2021-01-01", end="2026-4-30")
-nvidia = yf.download("NVDA", start="2021-01-01", end="2026-4-30")
-sp500 = yf.download("^GSPC", start="2021-01-01", end="2026-4-30")
-amd = yf.download("AMD", start="2021-01-01", end="2026-4-30")
-slb = yf.download("SLB", start="2021-01-01", end="2026-4-30")
-tesla = yf.download("TSLA", start="2021-01-01", end="2026-4-30")
-intel = yf.download("INTC", start="2021-01-01", end="2026-4-30")
-google = yf.download("GOOGL", start="2021-01-01", end="2026-4-30")
-meta = yf.download("META", start="2021-01-01", end="2026-4-30")
-nasdaq = yf.download("^IXIC", start="2021-01-01", end="2026-4-30")
-roblox = yf.download("RBLX", start="2021-01-01", end="2026-4-30")
+apple = yf.download("AAPL", start="2023-01-01", end="2026-5-30")
+nvidia = yf.download("NVDA", start="2023-01-01", end="2026-5-30")
+sp500 = yf.download("^GSPC", start="2023-01-01", end="2026-5-30")
+amd = yf.download("AMD", start="2023-01-01", end="2026-5-30")
+slb = yf.download("SLB", start="2023-01-01", end="2026-5-30")
+tesla = yf.download("TSLA", start="2023-01-01", end="2026-5-30")
+intel = yf.download("INTC", start="2023-01-01", end="2026-5-30")
+google = yf.download("GOOGL", start="2023-01-01", end="2026-5-30")
+meta = yf.download("META", start="2023-01-01", end="2026-5-30")
+nasdaq = yf.download("^IXIC", start="2023-01-01", end="2026-5-30")
+roblox = yf.download("RBLX", start="2023-01-01", end="2026-5-30")
 
 stocks = {
-    # "Apple":   ("AAPL",  apple),
-    # "Nvidia":  ("NVDA",  nvidia),
-    # "Tesla":  ("TSLA",  tesla),
-    # "S&P 500": ("^GSPC", sp500),
-    # "AMD":     ("AMD",   amd),
-    # "SLB":     ("SLB",   slb),
-    # "Intel":   ("INTC",  intel),
-    # "Google":   ("GOOGL", google),
+    "Apple":   ("AAPL",  apple),
+    "Nvidia":  ("NVDA",  nvidia),
+    "Tesla":  ("TSLA",  tesla),
+    "S&P 500": ("^GSPC", sp500),
+    "AMD":     ("AMD",   amd),
+    "SLB":     ("SLB",   slb),
+    "Intel":   ("INTC",  intel),
+    "Google":   ("GOOGL", google),
     "Meta":   ("META", meta),
     "Nasdaq":   ("^IXIC", nasdaq),
     "Roblox":  ("RBLX",  roblox)
@@ -201,15 +201,15 @@ for name, (ticker, data) in stocks.items():
     plt.savefig(f"saved_models/{file_name}_graph.png")
     plt.show()
 
-    # # --- Graph loss ---
-    # plt.figure(figsize=(10, 4))
-    # plt.plot(loss_history, color="red")
-    # plt.title(f"{name} — Training Loss")
-    # plt.xlabel("Epoch")
-    # plt.ylabel("Loss")
-    # plt.tight_layout()
-    # plt.savefig(f"saved_models/{file_name}_loss.png")
-    # plt.show()
+    # --- Graph loss ---
+    plt.figure(figsize=(10, 4))
+    plt.plot(loss_history, color="red")
+    plt.title(f"{name} — Training Loss")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.tight_layout()
+    plt.savefig(f"saved_models/{file_name}_loss.png")
+    plt.show()
 
     # --- Save scalers (model already saved during training) ---
     joblib.dump(scaler_X, f"saved_models/{file_name}_scaler_X.pkl")
