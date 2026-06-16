@@ -76,11 +76,14 @@ os.makedirs("saved_models", exist_ok=True)
 
 SEQUENCE_LENGTH = 30
 EPOCHS = 1000
+SEQUENCE_LENGTH = 30
+EPOCHS = 1000
 BATCH_SIZE = 32
 
 
 best_loss = float('inf')
 epochs_without_improvement = 0
+patience = 50
 patience = 50
 
 features = [
@@ -173,10 +176,10 @@ for name, (ticker, data) in stocks.items():
             print(f"  Early stopping at epoch {epoch+1}")
             break
 
-    # load best model for evaluation
+   
     model.load_state_dict(torch.load(f"saved_models/{file_name}_lstm.pth", weights_only=True))
 
-    # --- Evaluate ---
+  
     model.eval()
     with torch.no_grad():
         predictions_scaled = model(torch.tensor(X_test)).numpy()
@@ -189,6 +192,7 @@ for name, (ticker, data) in stocks.items():
     print(f"\n  RMSE: {rmse:.2f}")
     print(f"  R²:   {r2:.4f}")
 
+  
     
     plt.figure(figsize=(12, 5))
     plt.plot(actual, label="Actual Price", color="blue")
@@ -201,6 +205,7 @@ for name, (ticker, data) in stocks.items():
     plt.savefig(f"saved_models/{file_name}_graph.png")
     plt.show()
 
+    
     plt.figure(figsize=(10, 4))
     plt.plot(loss_history, color="red")
     plt.title(f"{name} — Training Loss")
@@ -210,6 +215,7 @@ for name, (ticker, data) in stocks.items():
     plt.savefig(f"saved_models/{file_name}_loss.png")
     plt.show()
 
+    
     
     joblib.dump(scaler_X, f"saved_models/{file_name}_scaler_X.pkl")
     joblib.dump(scaler_y, f"saved_models/{file_name}_scaler_y.pkl")
