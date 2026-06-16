@@ -57,6 +57,7 @@ google = yf.download("GOOGL", start="2023-01-01", end="2026-5-30")
 meta = yf.download("META", start="2023-01-01", end="2026-5-30")
 nasdaq = yf.download("^IXIC", start="2023-01-01", end="2026-5-30")
 roblox = yf.download("RBLX", start="2023-01-01", end="2026-5-30")
+spacex = yf.download("SPCX", start="2026-06-12", end="2026-06-16")
 
 stocks = {
     "Apple":   ("AAPL",  apple),
@@ -69,12 +70,13 @@ stocks = {
     "Google":   ("GOOGL", google),
     "Meta":   ("META", meta),
     "Nasdaq":   ("^IXIC", nasdaq),
-    "Roblox":  ("RBLX",  roblox)
+    "Roblox":  ("RBLX",  roblox),
+    # "SpaceX": ("SPCX", spacex)
 }
 
 os.makedirs("saved_models", exist_ok=True)
 
-SEQUENCE_LENGTH = 30
+SEQUENCE_LENGTH = 2
 EPOCHS = 1000
 BATCH_SIZE = 32
 

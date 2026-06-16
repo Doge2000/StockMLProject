@@ -62,7 +62,8 @@ tickers = {
     "Google":   ("GOOGL", "google"),
     "Meta":   ("META", "meta"),
     "Nasdaq":   ("^IXIC", "nasdaq"),
-    "Roblox":  ("RBLX",  "roblox")
+    "Roblox":  ("RBLX",  "roblox"),
+    "SpaceX": ("SPCX", "spacex")
 }
 
 print("========== TOMORROW'S PREDICTIONS (LSTM) ==========")
