@@ -62,8 +62,8 @@ tickers = {
     "Google":   ("GOOGL", "google"),
     "Meta":   ("META", "meta"),
     "Nasdaq":   ("^IXIC", "nasdaq"),
-    "Roblox":  ("RBLX",  "roblox"),
-    "SpaceX": ("SPCX", "spacex")
+    "Roblox":  ("RBLX",  "roblox")
+    # "SpaceX": ("SPCX", "spacex")
 }
 
 print("========== TOMORROW'S PREDICTIONS (LSTM) ==========")
@@ -80,7 +80,7 @@ for display_name, (ticker, file_name) in tickers.items():
     stock = yf.download(ticker, period="100d", auto_adjust=True)
     stock.columns = stock.columns.get_level_values(0)
 
-    # Compute all features — must match setup.py exactly
+
     stock['MA_10'] = stock['Close'].rolling(window=10).mean()
     stock['MA_50'] = stock['Close'].rolling(window=50).mean()
     stock['RSI']   = compute_RSI(stock['Close'])

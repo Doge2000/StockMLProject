@@ -46,17 +46,17 @@ class LSTMModel(nn.Module):
         return out
 
 
-apple = yf.download("AAPL", start="2023-01-01", end="2026-5-30")
-nvidia = yf.download("NVDA", start="2023-01-01", end="2026-5-30")
-sp500 = yf.download("^GSPC", start="2023-01-01", end="2026-5-30")
-amd = yf.download("AMD", start="2023-01-01", end="2026-5-30")
-slb = yf.download("SLB", start="2023-01-01", end="2026-5-30")
-tesla = yf.download("TSLA", start="2023-01-01", end="2026-5-30")
-intel = yf.download("INTC", start="2023-01-01", end="2026-5-30")
-google = yf.download("GOOGL", start="2023-01-01", end="2026-5-30")
-meta = yf.download("META", start="2023-01-01", end="2026-5-30")
-nasdaq = yf.download("^IXIC", start="2023-01-01", end="2026-5-30")
-roblox = yf.download("RBLX", start="2023-01-01", end="2026-5-30")
+apple = yf.download("AAPL", start="2023-01-01", end="2026-6-16")
+nvidia = yf.download("NVDA", start="2023-01-01", end="2026-6-16")
+sp500 = yf.download("^GSPC", start="2023-01-01", end="2026-6-16")
+amd = yf.download("AMD", start="2023-01-01", end="2026-6-16")
+slb = yf.download("SLB", start="2023-01-01", end="2026-6-16")
+tesla = yf.download("TSLA", start="2023-01-01", end="2026-6-16")
+intel = yf.download("INTC", start="2023-01-01", end="2026-6-16")
+google = yf.download("GOOGL", start="2023-01-01", end="2026-6-16")
+meta = yf.download("META", start="2023-01-01", end="2026-6-16")
+nasdaq = yf.download("^IXIC", start="2023-01-01", end="2026-6-16")
+roblox = yf.download("RBLX", start="2023-01-01", end="2026-6-16")
 spacex = yf.download("SPCX", start="2026-06-12", end="2026-06-16")
 
 stocks = {
