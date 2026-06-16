@@ -46,17 +46,17 @@ class LSTMModel(nn.Module):
         return out
 
 
-apple = yf.download("AAPL", start="2021-01-01", end="2026-4-30")
-nvidia = yf.download("NVDA", start="2021-01-01", end="2026-4-30")
-sp500 = yf.download("^GSPC", start="2021-01-01", end="2026-4-30")
-amd = yf.download("AMD", start="2021-01-01", end="2026-4-30")
-slb = yf.download("SLB", start="2021-01-01", end="2026-4-30")
-tesla = yf.download("TSLA", start="2021-01-01", end="2026-4-30")
-intel = yf.download("INTC", start="2021-01-01", end="2026-4-30")
-google = yf.download("GOOGL", start="2021-01-01", end="2026-4-30")
-meta = yf.download("META", start="2021-01-01", end="2026-4-30")
-nasdaq = yf.download("^IXIC", start="2021-01-01", end="2026-4-30")
-roblox = yf.download("RBLX", start="2021-01-01", end="2026-4-30")
+apple = yf.download("AAPL", start="2021-01-01", end="2026-5-4")
+nvidia = yf.download("NVDA", start="2021-01-01", end="2026-5-4")
+sp500 = yf.download("^GSPC", start="2021-01-01", end="2026-5-4")
+amd = yf.download("AMD", start="2021-01-01", end="2026-5-4")
+slb = yf.download("SLB", start="2021-01-01", end="2026-5-4")
+tesla = yf.download("TSLA", start="2021-01-01", end="2026-5-4")
+intel = yf.download("INTC", start="2021-01-01", end="2026-5-4")
+google = yf.download("GOOGL", start="2021-01-01", end="2026-5-4")
+meta = yf.download("META", start="2021-01-01", end="2026-5-4")
+nasdaq = yf.download("^IXIC", start="2021-01-01", end="2026-5-4")
+roblox = yf.download("RBLX", start="2021-01-01", end="2026-5-4")
 
 stocks = {
     # "Apple":   ("AAPL",  apple),
@@ -64,24 +64,24 @@ stocks = {
     # "Tesla":  ("TSLA",  tesla),
     # "S&P 500": ("^GSPC", sp500),
     # "AMD":     ("AMD",   amd),
-    # "SLB":     ("SLB",   slb),
+    "SLB":     ("SLB",   slb),
     # "Intel":   ("INTC",  intel),
     # "Google":   ("GOOGL", google),
-    "Meta":   ("META", meta),
-    "Nasdaq":   ("^IXIC", nasdaq),
-    "Roblox":  ("RBLX",  roblox)
+    # "Meta":   ("META", meta),
+    # "Nasdaq":   ("^IXIC", nasdaq),
+    # "Roblox":  ("RBLX",  roblox)
 }
 
 os.makedirs("saved_models", exist_ok=True)
 
-SEQUENCE_LENGTH = 30
-EPOCHS = 1000
+SEQUENCE_LENGTH = 15
+EPOCHS = 2000
 BATCH_SIZE = 32
 
 
 best_loss = float('inf')
 epochs_without_improvement = 0
-patience = 50
+patience = 60
 
 features = [
     'Open', 'High', 'Low', 'Close', 'Volume',
