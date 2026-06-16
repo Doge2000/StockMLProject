@@ -74,14 +74,14 @@ stocks = {
 
 os.makedirs("saved_models", exist_ok=True)
 
-SEQUENCE_LENGTH = 15
-EPOCHS = 2000
+SEQUENCE_LENGTH = 30
+EPOCHS = 1000
 BATCH_SIZE = 32
 
 
 best_loss = float('inf')
 epochs_without_improvement = 0
-patience = 60
+patience = 50
 
 features = [
     'Open', 'High', 'Low', 'Close', 'Volume',
@@ -189,7 +189,7 @@ for name, (ticker, data) in stocks.items():
     print(f"\n  RMSE: {rmse:.2f}")
     print(f"  R²:   {r2:.4f}")
 
-    # --- Graph predictions vs actual ---
+    
     plt.figure(figsize=(12, 5))
     plt.plot(actual, label="Actual Price", color="blue")
     plt.plot(predictions, label="Predicted Price", color="orange", linestyle="--")
@@ -201,7 +201,6 @@ for name, (ticker, data) in stocks.items():
     plt.savefig(f"saved_models/{file_name}_graph.png")
     plt.show()
 
-    # --- Graph loss ---
     plt.figure(figsize=(10, 4))
     plt.plot(loss_history, color="red")
     plt.title(f"{name} — Training Loss")
@@ -211,6 +210,6 @@ for name, (ticker, data) in stocks.items():
     plt.savefig(f"saved_models/{file_name}_loss.png")
     plt.show()
 
-    # --- Save scalers (model already saved during training) ---
+    
     joblib.dump(scaler_X, f"saved_models/{file_name}_scaler_X.pkl")
     joblib.dump(scaler_y, f"saved_models/{file_name}_scaler_y.pkl")
