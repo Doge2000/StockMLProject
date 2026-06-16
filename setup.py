@@ -76,15 +76,13 @@ os.makedirs("saved_models", exist_ok=True)
 
 SEQUENCE_LENGTH = 30
 EPOCHS = 1000
-SEQUENCE_LENGTH = 30
-EPOCHS = 1000
 BATCH_SIZE = 32
 
 
 best_loss = float('inf')
 epochs_without_improvement = 0
 patience = 50
-patience = 50
+
 
 features = [
     'Open', 'High', 'Low', 'Close', 'Volume',
